@@ -11,7 +11,7 @@
 	<groupId>com.libsayem</groupId>
 	<artifactId>LibraryManagementSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>LibraryManagementSystem</name>
+	<name>SS Open Library</name>
 	<description>Library Management System</description>
 	<url/>
 	<licenses>

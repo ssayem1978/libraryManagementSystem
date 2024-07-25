@@ -7,8 +7,8 @@
 </head>
 <body th:fragment="header" class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{/}" sec:authorize="hasRole('ROLE_USER')">Library Management</a>
-    <a class="navbar-brand" href="/admin/dashboard" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_LIBRARIAN')">Library Management</a>
+    <a class="navbar-brand" th:href="@{/}" sec:authorize="hasRole('ROLE_USER')">SS Open Library</a>
+    <a class="navbar-brand" href="/admin/dashboard" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_LIBRARIAN')">SS Open Library</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
