@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:if="http://www.w3.org/1999/xhtml"
+      xmlns:unless="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:insert="header :: header"></header>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">USERS</div>
+                <div class="card-body mt-2">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>TOTAL USERS: </h4>
+                            <h1><span th:text="${userCount}" class="text text-primary">0</span></h1>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>ACTIVE USERS: </h4>
+                            <h1><span th:text="${activeUserCount}" class="text text-primary">0</span></h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">BOOKS</div>
+                <div class="card-body mt-2">
+                    <h1><span th:text="${bookCount}" class="text text-primary">0</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">LOANS</div>
+                <div class="card-body mt-2">
+                    <h1><span th:text="${bookLoanCount}" class="text text-primary">0</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">Return initialized</div>
+                <div class="card-body mt-2">
+                    <h1><span th:text="${bookInitLoanCount}" class="text text-primary">0</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">GENRES</div>
+                <div class="card-body mt-2">
+                    <h1><span th:text="${categoryCount}" class="text text-primary">0</span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

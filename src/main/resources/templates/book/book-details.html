@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Details</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:insert="header :: header"></header>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-body">
+                <img th:src="@{'/uploads/' + ${book.coverImage}}" class="card-img-top" alt="Book Cover"
+                     th:if="${book.coverImage != null}">
+                <img src="/images/default-book-cover.jpg" class="card-img-top" alt="Default Cover"
+                     th:unless="${book.coverImage != null}">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="card-title" th:text="${book.title}">Book Title</h3>
+                <h5 class="card-subtitle mb-2 text-muted" th:text="${book.author}">Author</h5>
+                <p class="card-text">
+                    <strong>Category: </strong><span th:text="${book.category.name}">Category</span><br>
+                    <strong>ISBN: </strong><span th:text="${book.isbn}">ISBN</span><br>
+                    <strong>Available Copies: </strong><span th:text="${book.quantity}">Quantity</span>
+                </p>
+                <div>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#borrowModal">
+                        Borrow
+                    </button>
+                    <a th:href="@{/}" class="btn btn-primary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Borrow Modal -->
+<div class="modal fade" id="borrowModal" tabindex="-1" aria-labelledby="borrowModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="borrowModalLabel">Confirm Borrow Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/books/borrow/{id}(id=${book.id})}" method="post" id="borrowForm">
+                    <div class="form-group">
+                        <label for="returnDate">Return Date</label>
+                        <input type="date" class="form-control" id="returnDate" name="returnDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="document.getElementById('borrowForm').submit()">
+                    Confirm Borrow
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

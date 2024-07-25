@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:if="http://www.w3.org/1999/xhtml"
+      xmlns:unless="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:insert="header :: header"></header>
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <h2 class="mb-4">
+            <span if:th="${verified == true}">Verification Successful. Please login.</span>
+            <span unless:th="${verified == true}">Verification Failed. Please Contact Administration.</span>
+        </h2>
+    </div>
+</div>
+</body>
+</html>

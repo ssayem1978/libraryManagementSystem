@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:if="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:insert="header :: header"></header>
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2>Manage Books</h2>
+                <a th:href="@{/books}"
+                   class="btn btn-primary btn-lg w-10">Borrow new Book</a>
+            </div>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Borrowing Date</th>
+                    <th>Return Date</th>
+                    <th>Return Initialize Date</th>
+                    <th>Return Accepted Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="loan : ${books}">
+                    <td>
+                        <img th:if="${loan.book.coverImage != null}" th:src="@{'/uploads/'+${loan.book.coverImage}}"
+                             alt="Book Cover"
+                             style="width: 150px; height: 175px;">
+                        <img th:unless="${loan.book.coverImage != null}" src="/images/default-book-cover.jpg"
+                             alt="Default Cover"
+                             style="width: 150px; height: 175px;">
+                    </td>
+                    <td th:text="${loan.book.title}">Book Title</td>
+                    <td th:text="${loan.book.author}">Author Name</td>
+                    <td th:text="${loan.book.category.name}">Category Name</td>
+                    <td th:text="${loan.loanDate}">Loan Date</td>
+                    <td th:text="${loan.returnDate}">Return Date</td>
+                    <td th:text="${loan.returnInitializedDate}">Return Init Date</td>
+                    <td th:text="${loan.returnAcceptDate}">Return Accept Date</td>
+                    <td>
+
+                        <div th:unless="${loan.returnInitializedDate}">
+                            <a th:href="@{/user/books/return/{id}(id=${loan.id})}"
+                               class="btn btn-primary btn-lg w-100"
+                               th:onclick="return confirm('Are you sure you want to initialize return this book?');">Return</a>
+                        </div>
+                        <div th:if="${loan.returnInitializedDate}" class="alert alert-success" role="alert">
+                            Initialized
+                        </div>
+
+                        <div th:if="${loan.returnAcceptDate}" class="alert alert-success" role="alert">
+                            Accepted
+                        </div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
